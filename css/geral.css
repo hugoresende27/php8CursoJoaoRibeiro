@@ -1,0 +1,16 @@
+body{
+    background-color: grey;
+}
+
+.texto1{
+    font-size: 50px;
+    color: green;
+}
+.texto2{
+    font-size: 25px;
+    color: darkblue;
+}
+.texto3{
+    font-size: 25px;
+    color: darkred;
+}
