@@ -14,6 +14,7 @@
 <?php
 
 ///////////////////////////// TRIMS ///////////////////////////////////
+    echo "<h1>TRIMS</h1>";
     $a = "       ISTO É uma STRINGGGGG GGG     ";
     $b ="abcdef";
     echo "<p>TRIM NORMAL <span class='texto3'>".trim($a)."</span></p>";
@@ -34,6 +35,7 @@
     //$usario = trim($_POST['user']); //se user tiver colocado espaços a mais 
 
 ///////////////////////////// UPPERS E LOWERS ///////////////////////////////////
+echo "<h1>uppers e lowers</h1>";
     $nome1 = "hugão resende";
     echo "<p>".strtoupper($nome1);
     echo "<p>".mb_strtoupper($nome1); //mb_para as letras acentuadas tbm ficarem maiusculas
@@ -46,24 +48,25 @@
     echo "<p>".ucwords($nome1);
 
 ///////////////////////////// STRLEN ///////////////////////////////////
+echo "<h1>strlen</h1>";
     $comp = strlen($a);
-    echo "<h1>".$comp;
+    echo $comp;
     $y = "";
     $x = null;
     $z = false;
-    echo "<h1>\" \" ".strlen($y);
-    echo "<h1> null ".strlen($x);
-    echo "<h1> false ".strlen($z);
+    echo "\" \" ".strlen($y);
+    echo "null ".strlen($x);
+    echo " false ".strlen($z);
 
     $num = 1234;
-    echo "<h1> num ".strlen($num);
+    echo " num ".strlen($num);
 
     $acentos = "joão";
-    echo "<h2> acentos:: ".strlen($acentos);    //sem mb apresenta caracteres a mais, conta os acentos
-    echo "<h2> mb_acentos:: ".mb_strlen($acentos);
+    echo " acentos:: ".strlen($acentos)."";    //sem mb apresenta caracteres a mais, conta os acentos
+    echo "mb_acentos:: ".mb_strlen($acentos)."";
 
 ///////////////////////////// REPEAT ///////////////////////////////////
-
+echo "<h1>repeat</h1>";
     $aa = str_repeat('-',20);
     $bb = str_repeat('=|',20);
 
@@ -78,6 +81,38 @@
     }
 
 ///////////////////////////// CONTAINS ///////////////////////////////////
+echo "<h1>contains</h1>";
+    $aaa = "Esta frase é uma string!";
+    $bbb = 'Esta';
+   
+    if (str_contains($aaa,$bbb)){   //verifica se uma string existe dentro  de outra
+        echo "<p> Contains SIM";
+    } else {
+        echo "<p> Contains NÃO";
+    }
+
+    $teste = "STRING!";
+    if (str_contains($aaa, $teste)){
+        echo "<p> Contains SIM";
+    } else {
+        echo "<p> Contains NÃO";
+    }
+
+///////////////////////////// STARTS ENDS ///////////////////////////////////
+echo "<h1>starts ends</h1>";
+    if (str_starts_with($aaa, 'E')){
+        echo "<p> starts_with SIM";
+    } else {
+        echo "<p> Contains NÃO";
+    }
+
+    if (str_ends_with($aaa, 'ng!')){
+        echo "<p> ends_with SIM";
+    } else {
+        echo "<p> Contains NÃO";
+    }
+    
+
 ?>
 </body>
 </html>
