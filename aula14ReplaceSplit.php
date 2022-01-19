@@ -69,6 +69,35 @@
 
     </p>
 
+<?php
+    //@param string $needle
+    //If needle is not a string, it is converted to an integer and applied as the ordinal value of a character.
+    $string_string = stristr($abc, 'de');    //retorna o resto a partir de uma ocorrência //needle 'de' tem de ser sempre string
+    $string_string2 = stristr($abc, 'j',true);    //retorna o principio a partir de uma ocorrência (i case sensitive)
+    echo ("<p>$string_string</p>");
+    echo ("<p>$string_string2</p>");
+
+    $pos = strpos($abc, 'lm');
+    echo ("<p>$pos</p>");
+
+    //verificação se existe ===
+    if (mb_stripos($a, 'azz') === false){
+        echo "<p> Não existe!</p>";
+    } else {
+        echo "<p> existe!</p>";
+    }
+
+    ///////////////////////////////////////
+    $frase = "Este quarto TTem luz!";
+    $p = stripos($frase, 'T');
+    $p2 = strpos($frase, 'T');
+
+    echo ("<p>$p</p>");
+    echo ("<p>$p2</p>");
+
+
+?>
+
     
 </body>
 </html>
