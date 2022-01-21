@@ -29,6 +29,8 @@ if ($argc == 2){
 
 $file = fopen(time().'.txt','w');
 
+
+
 for ($i = 0; $i < $vezes; $i++ ){
     fwrite($file, rand($min, $max) . PHP_EOL);
 }

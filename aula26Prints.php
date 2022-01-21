@@ -18,3 +18,12 @@ echo sprintf (' aqui b %2$d e aqui a %1$d outra vez b em binário %2$b ', $a, $b
 echo sprintf ("capacidade : %'-10d", $b);
 //Dentro 999 está 00000100 valores
 echo sprintf ('Dentro %2$d está %1$08d valores', $a,$b);
+
+$valor = 425.25;
+echo sprintf("%'_20d", $valor);
+
+$valores = [ 23.35,456.33,7.1,123];
+
+foreach ($valores as $v){
+    echo sprintf("%'.30.2f",$v). PHP_EOL; 
+}
