@@ -40,5 +40,17 @@ file_put_contents("dadosCopia.txt",$texto);
 $txt = file_get_contents("dadosCopia.txt");
 echo $txt;
 
+//////////////////////// ler um ficheiro csv /////////////
+$fi = fopen("trimestre1.csv", "r");
+$max_lines = 1;
+while (!feof($fi)){
+    $l = fgetcsv($fi);      //$l vai ser um array
+    print_r ($l);
+    if ($max_lines-- == 0){//durante o ciclo vou decrementando o max_line, quando for 0 die
+        die ('Terminado');
+    }
+}
+fclose($fi);
+
 
 ?>
