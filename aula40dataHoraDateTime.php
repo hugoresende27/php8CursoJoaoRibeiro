@@ -65,5 +65,95 @@ echo $intervalo->days; //print da diferença de dias
 echo PHP_EOL;
 print_r($intervalo);
 
+///////////////////////////////// timezone ///////////////////////////////
+
+//https://www.php.net/manual/en/timezones.php
+$brasil = new DateTime('now', new DateTimeZone('America/Fortaleza'));
+$antartica = new DateTime('now', new DateTimeZone('Antarctica/Casey'));
+
+echo "BRASIL -- ".$brasil->format('d-m-Y H:i:s').PHP_EOL;
+echo "ANTARTICA -- ".$antartica->format('d-m-Y H:i:s').PHP_EOL;
+
+////////////////// timezone modifier ///////////////////////
+
+$portugal = new DateTime('now', new DateTimeZone('Europe/Lisbon'));
+
+echo "PT -- ".$portugal->format('d-m-Y H:i:s').PHP_EOL;
+
+//$portugal->modify('+8 hours');
+//$portugal->modify('+15 months');
+$portugal->modify('-33 year - 6 months + 8 hours');
+
+echo "PT -- ".$portugal->format('d-m-Y H:i:s').PHP_EOL;
+
+$data_nascimento = new DateTime('01-01-1966');
+$data_nascimento2 = new DateTime('23-01-1966');
+
+echo calcular_idade($data_nascimento);
+echo calcular_idade($data_nascimento2);
+
+echo PHP_EOL;
+calcular_idade_v2($data_nascimento);
+calcular_idade_v2($data_nascimento2);
+
+
+function calcular_idade_v2($data_nascimento){
+    $agora = new DateTime();
+
+    //calculo dos anos
+    if ($agora->format('Y') == $data_nascimento->format('Y')){//se o ano de nascimento for igual ao ano atual
+        $anos = 1;                                  //tem 1 ano 
+    } else {
+        $anos = $agora->format('Y') - $data_nascimento->format('Y'); //se não for igual ano atual - ano nascimento
+    }
+
+    //calculo meses
+    if($agora->format('m') < $data_nascimento->format('m')){//se o mes atual for inferior ao mes de nascimento
+        $anos--;                //ainda nao chegamos a 1 ano, -1 anos
+        $meses = $data_nascimento->format('m') - $agora->format('m');
+
+    } elseif($agora->format('m') == $data_nascimento->format('m')){//se estivermos no mesmo mês
+        $meses = $data_nascimento->format('m') - $agora->format('m');
+        if ($agora->format('d')<$data_nascimento->format('d')){ //e se o dia for menor que o dia de nascimento
+            $anos--;                //menos 1 ano
+            //$dias = $data_nascimento->format('d') - $agora->format('d');
+        }
+
+    } elseif($agora->format('m')>$data_nascimento->format('m')){ 
+        $meses = $agora->format('m') - $data_nascimento->format('m');
+   
+    }    
+    $dias = $agora->format('d') - $data_nascimento->format('d');
+    
+
+    echo "ANOS:: ".$anos.PHP_EOL;
+    echo "MESES:: ".$meses.PHP_EOL;
+    echo "DIAS:: ".abs($dias).PHP_EOL;
+}
+
+
+function calcular_idade($data_nascimento){
+    $agora = new DateTime();
+
+    //calculo dos anos
+    if ($agora->format('Y') == $data_nascimento->format('Y')){//se o ano de nascimento for igual ao ano atual
+        $anos = 1;                                  //tem 1 ano 
+    } else {
+        $anos = $agora->format('Y') - $data_nascimento->format('Y'); //se não for igual ano atual - ano nascimento
+    }
+
+    //calculo meses
+    if($agora->format('m') < $data_nascimento->format('m')){//se o mes atual for inferior ao mes de nascimento
+        $anos--;                //ainda nao chegamos a 1 ano, -1 anos
+
+    } elseif($agora->format('m') == $data_nascimento->format('m')){//se estivermos no mesmo mês
+
+        if ($agora->format('d')<$data_nascimento->format('d')){ //e se o dia for menor que o dia de nascimento
+            $anos--;                //menos 1 ano
+        }
+
+    }
+    return $anos != 1 ? "$anos anos" : " 1 ano";
+}
 
 ?>
