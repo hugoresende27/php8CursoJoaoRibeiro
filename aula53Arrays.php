@@ -88,3 +88,87 @@ $temp = array_pop($nomesB); //pop vai remover ultimo valor  //posso guardar valo
 print_r($nomesB);
 echo $temp.PHP_EOL;
 
+
+$empresa2 = [
+    'administracao' => ['hugo','ze'],
+    'secretaria' => 'rui',
+    'contabilidade' => 'pedro'
+];
+///////////// KEY EXISTS ///////////////////////////////////
+if (key_exists('contabilidade',$empresa2)){
+    echo "SIM";
+}else {
+    echo "Não";
+}
+echo PHP_EOL;
+///////////// IN ARRAY ///////////////////////////////////
+if (in_array('hugo',$empresa2['administracao'])){
+    echo "IN";
+}else {
+    echo "Not in";
+}
+
+/////////////REMOVER DUPLICADOS array_unique//////////////////////////
+$nomes = ['hugo','hugo','zecas','toninho','zecas'];
+
+$final = array_unique(($nomes));
+print_r($final);
+
+$valores = ['100','+100','1000','0200','200'];
+$fin = array_unique($valores, SORT_NUMERIC);
+print_R($fin);//[0] => 100 | [2] => 1000 | [3] => 0200
+$fin = array_unique($valores, SORT_STRING);
+print_r($fin);//[0] => 100 | [1] => +100 | [2] => 1000 | [3] => 0200 | [4] => 200
+echo PHP_EOL;
+
+/////////////SHUFFLES ARRAYS //////////////////////////
+shuffle($valores);
+foreach($valores as $v){
+    echo $v.PHP_EOL;
+}
+
+///////////// ARRAYS FILTER //////////////////////////
+
+$val = [1,2,3,4,5,6,7,8,9,10,15,25,45];
+$valFinal = array_filter($val, "multi5");//função callback chamada aqui entre ""
+print_r ($valFinal);
+
+function impares($v){
+    return $v % 2 != 0;
+}
+function pares($v){
+    return $v % 2 == 0;
+}
+function multi5($v){
+    return $v % 5 == 0;
+}
+
+///////////// ARRAYS keyfirst e keylast //////////////////////////
+echo array_key_first($val);
+$vvv = [
+    10 => 166,
+    100 => 2,
+    1000 => 3
+];
+echo array_key_first($vvv).PHP_EOL;
+//echo $vvv[0];//Notice  Undefined offset: 0 
+echo $vvv[array_key_first($vvv)].PHP_EOL;   //166 vai mostrar sempre o valor do PRIMEIRO index do array associativo
+echo $vvv[array_key_last($vvv)].PHP_EOL;   //166 vai mostrar sempre o valor do ÚLTIMO index do array associativo
+
+///////////// ARRAYS map //////////////////////////
+
+$nomesC = ['trex','cobra','snake','psa'];
+
+$finalC = array_map("saudacao",$nomesC);
+print_r($finalC);
+
+function saudacao($x){
+    return "Olá $x";
+}
+
+$valC = [1,2,3,4,5,6,7,8,9,10,15,25,45];
+print_r(array_map("quadrado",$valC));//array_map como argumentos recebe o nome da funcao " " e o array
+
+function quadrado($x){//função escrita aqui, recebe um argumento e retorna o seu elevado ao quadrado
+    return $x*$x;
+}
