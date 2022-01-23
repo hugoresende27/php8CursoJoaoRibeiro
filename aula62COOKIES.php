@@ -1,12 +1,20 @@
 <?php
+date_default_timezone_set("Europe/Lisbon");
 
 //mecanismo de armazenamento de informação do lado do cliente(browser)
 //sempre q criamos um cookie deixamos uma marca no browser do cliente/visitante
-
+$contador = 0;
 if (isset($_COOKIE['cook1'])){
-    echo $_COOKIE['cook1'];
+    echo "<p>cook1 : ".$_COOKIE['cook1']."</p>";
 } else {
-    setcookie('cook1', date('H:i:s'));
+    setrawcookie('cook1', date('H:i:s'));//rawcookie vai mostrar valores sem 16%3A08%3A54 
+}
+
+if (isset($_COOKIE['contador'])){
+    echo "<p>contador : ".$_COOKIE['contador']."</p>";
+} else {
+    $contador++;
+    setcookie('contador', $contador);
 }
 
 echo "<p>Terminado</p>";
